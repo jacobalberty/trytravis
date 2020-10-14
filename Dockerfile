@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 LABEL maintainer="Jacob Alberty <jacob.alberty@foundigital.com>"
 
@@ -51,8 +51,6 @@ RUN set -ex \
     && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
     && rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu \
-# verify that the binary works
-    && gosu nobody true \
     && apt-get purge -y --auto-remove $fetchDeps \
     && rm -rf /var/lib/apt/lists/*
 
