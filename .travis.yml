@@ -13,6 +13,7 @@ before_install:
   - chmod a+x ~/.docker/cli-plugins/docker-buildx
 script:
   - docker buildx create --use
+  - docker context ls
   - docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag jacobalberty/unifi:multiarch .
   - docker run -d -p 8443:8443 -p 8080:8080 -e RUNAS_UID0=true --name unifi jacobalberty/unifi:multiarch
   - docker ps | grep -q unifi
